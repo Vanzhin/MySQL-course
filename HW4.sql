@@ -29,10 +29,10 @@ SELECT DISTINCT firstname from users ORDER BY firstname ASC;
 UPDATE profiles 
 SET is_active = 0
 WHERE ((YEAR(CURDATE()) - YEAR(birthday)) - (RIGHT(CURDATE(),5)<RIGHT(birthday,5)))<18;
-
+select * from profiles;
 -- iv. Написать скрипт, удаляющий сообщения «из будущего» (дата больше сегодняшней)
 DELETE FROM messages
-WHERE 	created_at >= NOW();
+WHERE 	created_at > NOW();
 
 
 

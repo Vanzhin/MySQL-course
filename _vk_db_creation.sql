@@ -9,7 +9,9 @@ CREATE TABLE users (
     lastname VARCHAR(50) COMMENT 'Фамиль', -- COMMENT на случай, если имя неочевидное
     email VARCHAR(120) UNIQUE,
  	password_hash VARCHAR(100), -- 123456 => vzx;clvgkajrpo9udfxvsldkrn24l5456345t
-	phone BIGINT UNSIGNED UNIQUE, 
+	phone BIGINT UNSIGNED UNIQUE,
+    created_at DATETIME DEFAULT NOW(),
+    updated_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
 	
     INDEX users_firstname_lastname_idx(firstname, lastname)
 ) COMMENT 'юзеры';
@@ -22,7 +24,7 @@ CREATE TABLE `profiles` (
 	photo_id BIGINT UNSIGNED NULL,
     created_at DATETIME DEFAULT NOW(),
     hometown VARCHAR(100),
-    is_active BOOLEAN DEFAULT 1
+    is_active BIT DEFAULT 1
 	
     -- , FOREIGN KEY (photo_id) REFERENCES media(id) -- пока рано, т.к. таблицы media еще нет
 );
